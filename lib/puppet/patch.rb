@@ -1,0 +1,1 @@
+require 'puppet/patch/http_pool'
