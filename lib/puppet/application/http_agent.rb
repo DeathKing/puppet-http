@@ -4,7 +4,7 @@ require 'puppet/application/agent'
 class Puppet::Application::HttpAgent < Puppet::Application::Agent
 
   def wait_for_certificates
-    # Logging is necessary to aware user they are currently using an unsafe transmission.
+    # Logging is necessary to make user aware of they are currently using an unsafe transmission.
     Puppet.debug "Puppet HTTPAgent won't fetch certificate."
   end
 

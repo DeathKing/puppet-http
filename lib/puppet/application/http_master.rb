@@ -4,7 +4,7 @@ require 'puppet/application/master'
 class Puppet::Application::HttpMaster < Puppet::Application::Master
 
   def setup_ssl
-    # Logging is necessary to aware user they are currently using an unsafe transmission.
+    # Logging is necessary to make user aware of they are currently using an unsafe transmission.
     Puppet.debug "Puppet HTTPMaster won't setup SSL environment."
   end
 
