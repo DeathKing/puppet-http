@@ -26,8 +26,53 @@ WEBrick mode, just type:
 $ puppet http_master the-rest-option-as-usual
 ```
 
-If you run your master as a Rack middleware, how lucky you are, the only thing you need to do is to **turn off the SSL 
-feature of your front-end web server**.
+If you run your master as a Rack middleware, the steps are as follows:
+
+  1. turn off your frond-end web server SSL features!
+  2. edit your `config.ru` file, add a line `require 'puppet/http'` at the very beginning, and also change
+  `$0 = "master"` into `$0 = "http_master"`.
+  
+Here's a modified `config.ru` example:
+
+```ruby
+# a config.ru, for use with every rack-compatible webserver.
+# SSL needs to be handled outside this, though.
+
+# if puppet is not in your RUBYLIB:
+# $LOAD_PATH.unshift('/opt/puppet/lib')
+
+require 'puppet/http'  # <-- add this line
+
+$0 = "http_master"     # <-- change this line
+
+# if you want debugging:
+# ARGV << "--debug"
+
+ARGV << "--rack"
+
+# Rack applications typically don't start as root.  Set --confdir and --vardir
+# to prevent reading configuration from ~puppet/.puppet/puppet.conf and writing
+# to ~puppet/.puppet
+ARGV << "--confdir" << "/etc/puppet"
+ARGV << "--vardir"  << "/var/lib/puppet"
+
+# NOTE: it's unfortunate that we have to use the "CommandLine" class
+#  here to launch the app, but it contains some initialization logic
+#  (such as triggering the parsing of the config file) that is very
+#  important.  We should do something less nasty here when we've
+#  gotten our API and settings initialization logic cleaned up.
+#
+# Also note that the "$0 = master" line up near the top here is
+#  the magic that allows the CommandLine class to know that it's
+#  supposed to be running master.
+#
+# --cprice 2012-05-22
+
+require 'puppet/util/command_line'
+# we're usually running inside a Rack::Builder.new {} block,
+# therefore we need to call run *here*.
+run Puppet::Util::CommandLine.new.execute
+```
 
 ## TODO
 

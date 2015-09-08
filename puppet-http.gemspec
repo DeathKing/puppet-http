@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["DeathKing"]
   spec.email         = ["deathking0622@gmail.com"]
 
-  spec.summary       = %q{Make Puppet Master/Client communicate via HTTP.}
-  spec.description   = %q{Make Puppet Master/Client communicate via HTTP.}
+  spec.summary       = %q{Enable Puppet master/agent communicate via HTTP.}
+  spec.description   = %q{Enable Puppet master/agent communicate via HTTP.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
