@@ -1,7 +1,7 @@
 require 'puppet/network/http/connection'
 
 module Puppet::Network::HTTP
-  class HTTPConnection < Connection
+  class HttpConnection < Connection
 
     def initialize(host, port, options = {})
       verify = Puppet::SSL::Validator.no_validator
