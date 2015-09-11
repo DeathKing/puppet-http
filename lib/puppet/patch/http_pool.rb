@@ -1,5 +1,5 @@
 require 'puppet/network/http_pool'
-require 'puppet/patch/connection'
+require 'puppet/patch/http_connection'
 
 module Puppet::Network::HttpPool
 

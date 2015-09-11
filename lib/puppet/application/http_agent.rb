@@ -1,5 +1,5 @@
-require 'puppet/patch'
 require 'puppet/application/agent'
+require 'puppet/patch'
 
 class Puppet::Application::HttpAgent < Puppet::Application::Agent
 
