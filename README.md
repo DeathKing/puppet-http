@@ -8,7 +8,7 @@ get any trouble in certificate issuing.
 ## Installation
 
 ```
-$ gem install 'puppet-http'
+$ gem install puppet-http
 ```
 
 ## Usage
@@ -19,8 +19,7 @@ As to agent side, just using:
 $ puppet http_agent the-rest-option-as-usual
 ```
 
-The usage of master side depends on how you boot the master. If you trigger master via commandline, namely, using
-WEBrick mode, just type:
+The usage of master side depends on how you boot the master. If you trigger master via commandline, namely, using WEBrick mode, just type:
 
 ```
 $ puppet http_master the-rest-option-as-usual
@@ -80,8 +79,7 @@ Maybe we need some tests?
 
 ## Mechanism 
 
-Somehow, Puppet will search certain places to find out a what so called `ApplicationSubcommand`. If there's a file 
-whose name is `my_app.rb` under the relative path `lib\puppet\application\` to following paths:
+Somehow, Puppet will search certain places to find out a what so called `ApplicationSubcommand`. If there's a file whose name is `my_app.rb` under the relative path `lib\puppet\application\` to following paths:
 
   1. all the gems' directory
   2. Puppet modules' directory
@@ -102,8 +100,7 @@ class Puppet::Application::MyApp < Puppet::Application
 # Your code goes here
 ```
 
-Thus, when you boot puppet using `puppet my_app`, the file will be loaded and executed. We use this way to load 
-customize script and perform some dirty monkey patchings to disable the Puppet SSL feature.
+Thus, when you boot puppet using `puppet my_app`, the file will be loaded and executed. We use this way to load customize script and perform some dirty monkey patchings to disable the Puppet SSL feature.
 
 ## Development && Contributing
 
